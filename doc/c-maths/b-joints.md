@@ -2,33 +2,33 @@
 
 ## Geometry
 
-Joints are not simple objects, it can be difficult to deal with. To facilitate their description Pinocchio uses the Lie algebra which is described in the *Dealing with Lie bgroup geometry * chapter. Let's take the base joints and express them using Lie algebra :
+Joints are not simple objects, it can be difficult to deal with. To facilitate their description Pinocchio uses the Lie algebra which is described in the *Dealing with Lie bgroup geometry* chapter. Let's take the base joints and express them using Lie algebra :
 
-- the **revolute** joint is a \f$ SO(2)\f$ object.
+- the **revolute** joint is a $ SO(2)$ object.
 
-\f$ Mat_{move} =
- \begin{bmatrix} 0\\0\\1\\0\\0\\0 \end{bmatrix} \ \ Mat_{cons} = \begin{bmatrix} 1 &0 &0 &0 &0 \\ 0 &1 &0 &0 &0 \\0 &0 &0 &0 &0 \\0 &0 &1 &0 &0 \\ 0 &0 &0 &1 &0 \\0 &0 &0 &0 &1 \end{bmatrix} \f$
+$ Mat_{move} =
+ \begin{bmatrix} 0\\0\\1\\0\\0\\0 \end{bmatrix} \ \ Mat_{cons} = \begin{bmatrix} 1 &0 &0 &0 &0 \\ 0 &1 &0 &0 &0 \\0 &0 &0 &0 &0 \\0 &0 &1 &0 &0 \\ 0 &0 &0 &1 &0 \\0 &0 &0 &0 &1 \end{bmatrix} $
 
 - the **cylindrical** joint :
 
-\f$Mat_{move} =
-\begin{bmatrix} 0 &0 \\ 0 &0 \\ 1 &0 \\ 0 &0 \\ 0 &0 \\ 0 &1 \end{bmatrix} \ \ Mat_{const} = \begin{bmatrix} 1 &0 &0 &0 \\ 0 &1 &0 &0 \\ 0 &0 &0 &0 \\ 0 &0 &1 &0 \\ 0 &0 &0 &1 \\ 0 &0 &0 &0 \end{bmatrix} \f$
+$Mat_{move} =
+\begin{bmatrix} 0 &0 \\ 0 &0 \\ 1 &0 \\ 0 &0 \\ 0 &0 \\ 0 &1 \end{bmatrix} \ \ Mat_{const} = \begin{bmatrix} 1 &0 &0 &0 \\ 0 &1 &0 &0 \\ 0 &0 &0 &0 \\ 0 &0 &1 &0 \\ 0 &0 &0 &1 \\ 0 &0 &0 &0 \end{bmatrix} $
 
 
-- The **spherical** joint is a \f$ SO(3) \f$ object.
+- The **spherical** joint is a $ SO(3) $ object.
 
-\f$ Mat_{move} =
- \begin{bmatrix} 1 &0 &0\\0 &1 &0\\0 &0 &1\\0 &0 &0\\0 &0 &0\\0 &0 &0 \end{bmatrix} \ \ Mat_{cons} = \begin{bmatrix} 0 &0 &0 \\ 0 &0 &0 \\0 &0 &0 \\1 &0 &0 \\ 0 &1 &0 \\0 &0 &1 \end{bmatrix} \f$
+$ Mat_{move} =
+ \begin{bmatrix} 1 &0 &0\\0 &1 &0\\0 &0 &1\\0 &0 &0\\0 &0 &0\\0 &0 &0 \end{bmatrix} \ \ Mat_{cons} = \begin{bmatrix} 0 &0 &0 \\ 0 &0 &0 \\0 &0 &0 \\1 &0 &0 \\ 0 &1 &0 \\0 &0 &1 \end{bmatrix} $
 
-- The **planar** joint is a \f$ SE(2) \f$ object.
+- The **planar** joint is a $ SE(2) $ object.
 
- \f$ Mat_{move} =
- \begin{bmatrix} 0 &0 &0\\0 &0 &0\\0 &0 &0\\1 &0 &0\\0 &1 &0\\0 &0 &1 \end{bmatrix} \ \ Mat_{cons} = \begin{bmatrix} 1 &0 &0 \\ 0 &1 &0 \\0 &0 &1 \\0 &0 &0 \\ 0 &0 &0 \\0 &0 &0 \end{bmatrix} \f$
+ $ Mat_{move} =
+ \begin{bmatrix} 0 &0 &0\\0 &0 &0\\0 &0 &0\\1 &0 &0\\0 &1 &0\\0 &0 &1 \end{bmatrix} \ \ Mat_{cons} = \begin{bmatrix} 1 &0 &0 \\ 0 &1 &0 \\0 &0 &1 \\0 &0 &0 \\ 0 &0 &0 \\0 &0 &0 \end{bmatrix} $
 
-- The **free floating** joint is a \f$ SE (3) \f$ object. The movement and constraints matrices are 6 by 6 matrices.
+- The **free floating** joint is a $ SE (3) $ object. The movement and constraints matrices are 6 by 6 matrices.
 
- \f$ Mat_{move} =
- \begin{bmatrix} Id \end{bmatrix} \ \ Mat_{const} = \begin{bmatrix} 0 \end{bmatrix} \f$
+ $ Mat_{move} =
+ \begin{bmatrix} Id \end{bmatrix} \ \ Mat_{const} = \begin{bmatrix} 0 \end{bmatrix} $
 
 
  The matrices respectively represent the movements and constraints in a landmark related to the joint itself.
@@ -70,35 +70,35 @@ Furthermore, we can create more complicated joints called **composite joints** b
 The most simple rotational joint we have to deal with is the revolute joint, he has just one degree of freedom so it is possible just to focus on it. We can find three different types of revolute joints, each type can rotate around one of the 3-axis, x-axis, y-axis or z-axis.
 Revolute joints are used to describe rotational movements.
 
-![Revolute joint. One rotation possible](revolute_laas.gif)
+![Revolute joint. One rotation possible](../pictures/joints_gif/revolute_laas.gif)
 
 
 ### Prismatic joint
 
 Again a one degree of freedom joint but this time no more rotations. With a Prismatic joint we are able to describe translational movements. As the revolute joint, we can set up three differents Prismatic joints, each following one axis which are the x-axis, y-axis or z-axis.
 
-![Prismatic joint. It can slide along an axis](prismatic_laas.gif)
+![Prismatic joint. It can slide along an axis](../pictures/joints_gif/prismatic_laas.gif)
 ### Cylindrical joint
 
 The cylindrical joint has two degrees of freedom, one of rotation and this other of translation.
-![Cylindrical joint. It can slide along an axis and turn around](cylindrical_laas.gif)
+![Cylindrical joint. It can slide along an axis and turn around](../pictures/joints_gif/cylindrical_laas.gif)
 ### Spherical joint
 
 The spherical joint is the closest thing to an human's articulation, it is very close for our hip for example but even our body is restricted, we can not do a full tour around one of the 3-axis. This joint is almost the same except for the fact it can do a full rotation on itself. So this joint can move around the 3-axis. He allows the robot to move its members as we do and even better.
 
-![Spherical joint. It can perform three rotations at the same time](spherical_laas.gif)
+![Spherical joint. It can perform three rotations at the same time](../pictures/joints_gif/spherical_laas.gif)
 
 ### Planar joint
 
 As its name suggests, a planar joint allows movements that an object can do in a plane. Indeed, he allows two translations and one rotation, therefore it has three degrees of freedom. We find this type of movement all over our daily lives, a car has this movement, we have it most of the time when we walk on a flat floor and for example this is exactly Tiago's movement.
 
-![Planar joint. It is subject to moving only on the map](planar_laas.gif)
+![Planar joint. It is subject to moving only on the map](../pictures/joints_gif/planar_laas.gif)
 
-A configuration vector for a planar joint is four-dimensional, with coordinates \f$(x, y, \cos \theta, \sin \theta)\f$ representing the corresponding affine transform matrix:
+A configuration vector for a planar joint is four-dimensional, with coordinates $(x, y, \cos \theta, \sin \theta)$ representing the corresponding affine transform matrix:
 
-\f$ M_{parent,child} = \begin{bmatrix} \cos \theta & -\sin \theta & 0 & x \\ \sin \theta &  \cos \theta & 0 & y \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \f$
+$ M_{parent,child} = \begin{bmatrix} \cos \theta & -\sin \theta & 0 & x \\ \sin \theta &  \cos \theta & 0 & y \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} $
 
-A tangent (*e.g.* velocity) vector for a planar joint is three-dimensional, with coordinates \f$(\dot{x}, \dot{y}, \dot{\theta})\f$.
+A tangent (*e.g.* velocity) vector for a planar joint is three-dimensional, with coordinates $(\dot{x}, \dot{y}, \dot{\theta})$.
 
 ### Translation joint
 

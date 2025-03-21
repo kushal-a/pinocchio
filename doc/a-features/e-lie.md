@@ -2,7 +2,7 @@
 
 Pinocchio relies heavily on Lie groups and Lie algebras to handle motions and more specifically rotations.
 For this reason it supports the following special groups \\( SO(2), SO(3), SE(2), SE(3) \\) and implements their associated algebras
-\f$ \mathfrak{se}(2) , \mathfrak{se}(3) \f$.
+$ \mathfrak{se}(2) , \mathfrak{se}(3) $.
 It has various applications like representing the motion of a robot free flyer joint (typically the base of a mobile robot),
 or the motion of the robot links. The later is particularly useful for collision detection.
 It is also interesting to have general vector space over which a Lie algebra is defined.
@@ -10,13 +10,13 @@ It is also interesting to have general vector space over which a Lie algebra is 
 
 ## Using \\( SE(2) \\) with pinocchio in C++
 
-As a motivating example let us consider a mobile robot evolving in a plane \f$(\mathbb{R}^2 \times \mathbb{S}^1 \f$).
-![SE2MotivatingExample](SE2MotivatingExample.svg)
+As a motivating example let us consider a mobile robot evolving in a plane $(\mathbb{R}^2 \times \mathbb{S}^1 $).
+![SE2MotivatingExample](../pictures/SE2MotivatingExample.svg)
 
-The robot starts at position \f$ pose_s = (x_s,y_s,\theta_s) \f$ and after a rigid motion
-\f$ \delta_u=(\delta x,\delta y,\delta \theta) \f$
+The robot starts at position $ pose_s = (x_s,y_s,\theta_s) $ and after a rigid motion
+$ \delta_u=(\delta x,\delta y,\delta \theta) $
 it finishes
-at \f$ pose_g = (x_{g},y_{g},\theta_{g})\f$.
+at $ pose_g = (x_{g},y_{g},\theta_{g})$.
 It is possible to instantiate the corresponding \\(SE(2)\\) objects using:
 
 \code
@@ -30,8 +30,8 @@ It is possible to instantiate the corresponding \\(SE(2)\\) objects using:
 You can change Scalar by another type such as float.
 
 
-In this example, \f$ pose_s=(1,1,\pi/4)\f$ and \f$ pose_g=(3,1,-\pi/2) \f$ and we want to compute
-\f$ \delta_u \f$
+In this example, $ pose_s=(1,1,\pi/4)$ and $ pose_g=(3,1,-\pi/2) $ and we want to compute
+$ \delta_u $
 \code
   pose_s(0) = 1.0; pose_s(1) = 1.0;
   pose_s(2) = cos(M_PI/4.0); pose_s(3) = sin(M_PI/4.0);
@@ -42,8 +42,8 @@ In this example, \f$ pose_s=(1,1,\pi/4)\f$ and \f$ pose_g=(3,1,-\pi/2) \f$ and w
   std::cout << delta_u << std::endl;
 \endcode
 
-aSE2 is used to compute the difference between two configuration vectors representing the two poses. Note that the rotation is represented by two numbers \f$ sin(\theta),cos(\theta)\f$ which is also a \f$ SO(2) \f$ object.
-The difference lies in the tangent space of \f$ SE(2)\f$ and is representend by a vector of 3 reals.
+aSE2 is used to compute the difference between two configuration vectors representing the two poses. Note that the rotation is represented by two numbers $ sin(\theta),cos(\theta)$ which is also a $ SO(2) $ object.
+The difference lies in the tangent space of $ SE(2)$ and is representend by a vector of 3 reals.
 Therefore the output is:
 
 \code
@@ -72,13 +72,13 @@ The result is indeed:
 -1
 \endcode
 
-## Using \f$ SE(3) \f$ with pinocchio in C++
+## Using $ SE(3) $ with pinocchio in C++
 
 Our mobile robot is not in a plane but in a 3-dimensional space. So let's consider a object in our physical space. This is actually almost the same case, we want the object from one position to an other position. The difficulty lies in the fact that we now have three dimensions so the object has six degrees of freedom, three corresponding to its translation and three to its rotation.
 
-![SE3MotivatingExample](SE3Example1.jpg)
+![SE3MotivatingExample](../pictures/SE3Example1.jpg)
 
-It is also possible to instantiate the corresponding object which is now a \f$ SE(3) \f$ object using the same algorithm and changing the dimension parameter:
+It is also possible to instantiate the corresponding object which is now a $ SE(3) $ object using the same algorithm and changing the dimension parameter:
 
 \code
   typedef double Scalar;
@@ -89,29 +89,29 @@ It is also possible to instantiate the corresponding object which is now a \f$ S
   SpecialEuclideanOperationTpl<3,Scalar,Options>::TangentVector_t delta_u ;
 \endcode
 
-In this example, \f$ pose_s=(1,1,1,\pi/2,\pi/4,\pi/8)\f$ and \f$ pose_g=(4,3,3,\pi/4,\pi/3, -\pi) \f$. For the starting position, there is first a rotation around the y-axis then the x-axis and finally the z-axis. For the final position, the rotations are in this order, x-axis, y-axis, z-axis. We want to compute \f$ \delta_u \f$.
+In this example, $ pose_s=(1,1,1,\pi/2,\pi/4,\pi/8)$ and $ pose_g=(4,3,3,\pi/4,\pi/3, -\pi) $. For the starting position, there is first a rotation around the y-axis then the x-axis and finally the z-axis. For the final position, the rotations are in this order, x-axis, y-axis, z-axis. We want to compute $ \delta_u $.
 
 - For the first pose, we have the three rotations matrices for each rotation :
 
-  \f$ R_{x_s} =
-  \begin{bmatrix} 1 &0 &0 \\ 0 &cos(\pi/8) &-sin(\pi/8) \\0 &sin(\pi/8) &cos(\pi/8) \end{bmatrix}  \ \  R_{y_s}  =  \begin{bmatrix} cos(\pi/4) &0 &sin(\pi/4) \\ 0 &1 &0 \\-sin(\pi/4) &0 &cos(\pi/4) \end{bmatrix} \ \ R_{z_s}  =  \begin{bmatrix} cos(\pi/2) &-sin(\pi/2) &0 \\sin(\pi/2) &cos(\pi/2) &0 \\ 0 &0 &1\end{bmatrix} \f$
+  $ R_{x_s} =
+  \begin{bmatrix} 1 &0 &0 \\ 0 &cos(\pi/8) &-sin(\pi/8) \\0 &sin(\pi/8) &cos(\pi/8) \end{bmatrix}  \ \  R_{y_s}  =  \begin{bmatrix} cos(\pi/4) &0 &sin(\pi/4) \\ 0 &1 &0 \\-sin(\pi/4) &0 &cos(\pi/4) \end{bmatrix} \ \ R_{z_s}  =  \begin{bmatrix} cos(\pi/2) &-sin(\pi/2) &0 \\sin(\pi/2) &cos(\pi/2) &0 \\ 0 &0 &1\end{bmatrix} $
 
   Therefore, the complete rotation is:
 
-  \f$ R_{pose_s} = R_{s_z} * R_{s_x} * R_{s_y}  = \begin{bmatrix} 0 &-1 &0 \\ cos(\pi/4)*cos(\pi/8) + sin(\pi/4) * sin(\pi/8) &0 &sin(\pi/4) * cos(\pi/8) - cos(\pi/4) * sin(\pi/8) \\ sin(\pi/8) * cos(\pi/4) - cos(\pi/8) * sin(\pi/4) &0 &sin(\pi/4) * sin(\pi/8) + cos(\pi/4) * cos(\pi/8) \end{bmatrix} \f$
+  $ R_{pose_s} = R_{s_z} * R_{s_x} * R_{s_y}  = \begin{bmatrix} 0 &-1 &0 \\ cos(\pi/4)*cos(\pi/8) + sin(\pi/4) * sin(\pi/8) &0 &sin(\pi/4) * cos(\pi/8) - cos(\pi/4) * sin(\pi/8) \\ sin(\pi/8) * cos(\pi/4) - cos(\pi/8) * sin(\pi/4) &0 &sin(\pi/4) * sin(\pi/8) + cos(\pi/4) * cos(\pi/8) \end{bmatrix} $
 
 - For the second one, we have:
 
-  \f$ R_{x_g} =
-  \begin{bmatrix} 1 &0 &0 \\ 0 &cos(\pi/4) &-sin(\pi/4) \\0 &sin(\pi/4) &cos(\pi/4) \end{bmatrix}  \ \  R_{y_g}  =  \begin{bmatrix} cos(\pi/3) &0 &sin(\pi/3) \\ 0 &1 &0 \\ -sin(\pi/3) &0 &cos(\pi/3) \end{bmatrix} \ \ R_{z_g} =  \begin{bmatrix} cos(-\pi) &-sin(-\pi) &0 \\ sin(-\pi) &cos(-\pi) &0 \\ 0 &0 &1\end{bmatrix} \f$
+  $ R_{x_g} =
+  \begin{bmatrix} 1 &0 &0 \\ 0 &cos(\pi/4) &-sin(\pi/4) \\0 &sin(\pi/4) &cos(\pi/4) \end{bmatrix}  \ \  R_{y_g}  =  \begin{bmatrix} cos(\pi/3) &0 &sin(\pi/3) \\ 0 &1 &0 \\ -sin(\pi/3) &0 &cos(\pi/3) \end{bmatrix} \ \ R_{z_g} =  \begin{bmatrix} cos(-\pi) &-sin(-\pi) &0 \\ sin(-\pi) &cos(-\pi) &0 \\ 0 &0 &1\end{bmatrix} $
 
   The complete rotation is:
 
-  \f$ R_{pose_g} =
-  \begin{bmatrix} -cos(\pi/3) &-sin(\pi/3) * sin(\pi/4) &-cos(\pi/4) * sin(\pi/3) \\ 0 &-cos(\pi/4) &sin(\pi/4) \\ -sin(\pi/3) &sin(\pi/4) * cos(\pi/3) &cos(\pi/3) * cos(\pi/4) \end{bmatrix} \f$
+  $ R_{pose_g} =
+  \begin{bmatrix} -cos(\pi/3) &-sin(\pi/3) * sin(\pi/4) &-cos(\pi/4) * sin(\pi/3) \\ 0 &-cos(\pi/4) &sin(\pi/4) \\ -sin(\pi/3) &sin(\pi/4) * cos(\pi/3) &cos(\pi/3) * cos(\pi/4) \end{bmatrix} $
 
 
-To compute \f$ \delta_u \f$ using Pinocchio we need to transform \f$ R_{pose_s} \f$ and \f$ R_{pose_g} \f$ matrices into quaternions using:
+To compute $ \delta_u $ using Pinocchio we need to transform $ R_{pose_s} $ and $ R_{pose_g} $ matrices into quaternions using:
 
 \code
   float s = 0.5f / sqrtf(trace+ 1.0f);
@@ -138,7 +138,7 @@ The quaternions components are:
     0.800103
   \endcode
 
-For each pose we have now a mathematical object with seven components and both are normalized. As for the \f$ SE(2) \f$ example we compute \f$ \delta_u \f$ using:
+For each pose we have now a mathematical object with seven components and both are normalized. As for the $ SE(2) $ example we compute $ \delta_u $ using:
 
 \code
   pose_s(0) = 1.0; pose_s(1) = 1.0;
@@ -152,7 +152,7 @@ For each pose we have now a mathematical object with seven components and both a
   std::cout << delta_u << std::endl;
 \endcode
 
-The difference lies in the tangent space of \f$ SE(3)\f$ and is represented by a vector of 6 reals which is:
+The difference lies in the tangent space of $ SE(3)$ and is represented by a vector of 6 reals which is:
 
 \code
   -1.50984
@@ -194,7 +194,7 @@ Assuming that we want to make the robot pass through known positions, we can use
 
 The problem is an interpolation such as Lagrange's one only takes into account translations while the robot interact with its environment by performing translations and rotations.
 
-A possibility is to use the \f$ \delta_{theta} \f$ method by using quaternions. The method is simple, we just vary the angle, the scalar component of the quaternion, with very small variations.
+A possibility is to use the $ \delta_{theta} $ method by using quaternions. The method is simple, we just vary the angle, the scalar component of the quaternion, with very small variations.
 
 Let's consider the previous example, we can interpolate trajectory using:
 \code
